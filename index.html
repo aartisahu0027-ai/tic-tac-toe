@@ -1,42 +1,419 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tic-Tac-Toe</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="game-container">
+    <!-- THEME BUTTON -->
+    <button id="themeBtn" class="theme-btn">🌙</button>
 
-        <h1>Tic-Tac-Toe</h1>
 
-        <div class="mode-buttons">
-            <button id="twoPlayerBtn">2 Players</button>
-            <button id="computerBtn">Vs Computer</button>
+    <!-- =========================
+         START SCREEN
+    ========================== -->
+
+    <div id="startScreen" class="screen">
+
+        <div class="start-card">
+
+            <div class="game-icon">✕ ○</div>
+
+            <h1>Tic-Tac-Toe</h1>
+
+            <p>Choose how you want to play</p>
+
+
+            <!-- GAME MODE -->
+
+            <div class="mode-buttons">
+
+                <button id="twoPlayerBtn" class="game-mode">
+
+                    <span>👥</span>
+
+                    <div>
+                        <strong>2 Players</strong>
+                        <small>Play with a friend</small>
+                    </div>
+
+                </button>
+
+
+                <button id="computerBtn" class="game-mode">
+
+                    <span>🤖</span>
+
+                    <div>
+                        <strong>Vs Computer</strong>
+                        <small>Challenge the AI</small>
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <!-- PLAYER SETUP -->
+
+            <div id="setupArea" class="setup-area hidden">
+
+
+                <!-- PLAYER 1 -->
+
+                <input
+                    type="text"
+                    id="playerName"
+                    placeholder="Player 1 name"
+                    maxlength="15"
+                    autocomplete="off"
+                >
+
+
+                <!-- PLAYER 2 -->
+
+                <input
+                    type="text"
+                    id="player2Name"
+                    placeholder="Player 2 name"
+                    maxlength="15"
+                    class="hidden"
+                    autocomplete="off"
+                >
+
+
+                <!-- DIFFICULTY -->
+
+                <div id="difficultyBox" class="difficulty-box hidden">
+
+                    <p>Choose difficulty</p>
+
+                    <div class="difficulty-buttons">
+
+                        <button
+                            class="difficulty"
+                            data-level="easy"
+                        >
+                            Easy
+                        </button>
+
+                        <button
+                            class="difficulty"
+                            data-level="medium"
+                        >
+                            Medium
+                        </button>
+
+                        <button
+                            class="difficulty selected"
+                            data-level="hard"
+                        >
+                            Hard
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- START GAME -->
+
+                <button
+                    id="startGameBtn"
+                    class="start-game-btn"
+                >
+                    Start Game
+                </button>
+
+            </div>
+
+
+            <!-- HOW TO PLAY -->
+
+            <button
+                id="howToBtn"
+                class="secondary-btn"
+            >
+                How to Play
+            </button>
+
         </div>
-
-        <p id="status">Choose a game mode</p>
-
-        <div class="board">
-            <button class="cell"></button>
-            <button class="cell"></button>
-            <button class="cell"></button>
-
-            <button class="cell"></button>
-            <button class="cell"></button>
-            <button class="cell"></button>
-
-            <button class="cell"></button>
-            <button class="cell"></button>
-            <button class="cell"></button>
-        </div>
-
-        <button id="restart">Restart Game</button>
 
     </div>
+
+
+
+    <!-- =========================
+         GAME SCREEN
+    ========================== -->
+
+    <div id="gameScreen" class="screen hidden">
+
+        <div class="game-container">
+
+
+            <!-- BACK -->
+
+            <button
+                id="backBtn"
+                class="back-button"
+            >
+                ← Back
+            </button>
+
+
+            <!-- TITLE -->
+
+            <h1>Tic-Tac-Toe</h1>
+
+
+            <!-- STATUS -->
+
+            <p id="status">
+                Your turn
+            </p>
+
+
+            <!-- SCOREBOARD -->
+
+            <div class="scoreboard">
+
+
+                <!-- X PLAYER -->
+
+                <div id="xScoreBox">
+
+                    <strong id="xName">
+                        Player X
+                    </strong>
+
+                    <span id="xScore">
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- DRAWS -->
+
+                <div>
+
+                    <strong>
+                        Draws
+                    </strong>
+
+                    <span id="drawScore">
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- O PLAYER -->
+
+                <div id="oScoreBox">
+
+                    <strong id="oName">
+                        Player O
+                    </strong>
+
+                    <span id="oScore">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GAME BOARD -->
+
+            <div class="board">
+
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
+
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
+
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
+
+            </div>
+
+
+            <!-- GAME BUTTONS -->
+
+            <button
+                id="playAgain"
+                class="main-btn"
+            >
+                Play Again
+            </button>
+
+            <button
+                id="resetScore"
+                class="secondary-btn"
+            >
+                Reset Score
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         WINNER POPUP
+    ========================== -->
+
+    <div
+        id="winnerModal"
+        class="modal hidden"
+    >
+
+        <div class="winner-card">
+
+
+            <!-- TROPHY -->
+
+            <div class="winner-trophy">
+                🏆
+            </div>
+
+
+            <!-- WINNER TITLE -->
+
+            <h2 id="winnerTitle">
+                Winner!
+            </h2>
+
+
+            <!-- WINNER NAME -->
+
+            <div
+                id="winnerName"
+                class="winner-name"
+            >
+                Player Wins!
+            </div>
+
+
+            <!-- WINNER MESSAGE -->
+
+            <p id="winnerMessage">
+                Congratulations!
+            </p>
+
+
+            <!-- POPUP BUTTONS -->
+
+            <div class="winner-buttons">
+
+                <button
+                    id="winnerPlayAgain"
+                    class="main-btn"
+                >
+                    Play Again
+                </button>
+
+
+                <button
+                    id="winnerBack"
+                    class="secondary-btn"
+                >
+                    Back to Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         HOW TO PLAY MODAL
+    ========================== -->
+
+    <div
+        id="howToModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+
+            <button
+                id="closeModal"
+                class="close-btn"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                How to Play
+            </h2>
+
+
+            <p>
+                Get three of your symbols in a row.
+            </p>
+
+
+            <ul>
+
+                <li>
+                    Choose X or O.
+                </li>
+
+                <li>
+                    Take turns placing your symbol.
+                </li>
+
+                <li>
+                    Complete a row, column or diagonal.
+                </li>
+
+                <li>
+                    First player with three in a row wins.
+                </li>
+
+                <li>
+                    If all spaces are filled, it's a draw.
+                </li>
+
+            </ul>
+
+
+            <button
+                id="modalOk"
+                class="main-btn"
+            >
+                Got it!
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
 
