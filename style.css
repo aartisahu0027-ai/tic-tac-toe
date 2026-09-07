@@ -1,0 +1,137 @@
+
+```css
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(36px, 10vw, 48px);
+    margin-bottom: 15px;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mode-buttons button {
+    flex: 1;
+    max-width: 180px;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    touch-action: manipulation;
+}
+
+.mode-buttons button:active {
+    transform: scale(0.95);
+}
+
+#status {
+    font-size: clamp(17px, 5vw, 20px);
+    margin-bottom: 20px;
+    min-height: 24px;
+}
+
+.board {
+    width: min(90vw, 360px);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 10px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    border-radius: 15px;
+    background: white;
+    font-size: clamp(40px, 14vw, 60px);
+    font-weight: bold;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.cell:active {
+    transform: scale(0.94);
+}
+
+.cell.winner {
+    background: #ffe066;
+    transform: scale(1.05);
+}
+
+#restart {
+    margin-top: 25px;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #764ba2;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+#restart:active {
+    transform: scale(0.95);
+}
+
+/* Extra adjustment for very small phones */
+@media (max-width: 360px) {
+    body {
+        padding: 12px;
+    }
+
+    .mode-buttons {
+        gap: 6px;
+    }
+
+    .mode-buttons button {
+        font-size: 13px;
+        padding: 10px 6px;
+    }
+
+    .board {
+        width: 92vw;
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .cell {
+        border-radius: 10px;
+    }
+}
+```
